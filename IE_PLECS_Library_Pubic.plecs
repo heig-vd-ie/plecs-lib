@@ -4618,7 +4618,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Miscellaneous/Turn-on\\/o"
+              SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/Turn-on\\/o"
 "ff Delay"
               Name          "Turn-on/off Delay1"
               Show          off
@@ -13202,7 +13202,7 @@ Plecs {
                   BrowserWidth  100
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod3"
                     Show          off
@@ -13291,7 +13291,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod4"
                     Show          off
@@ -13323,7 +13323,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat5"
                     Show          on
                     Position      [260, 255]
@@ -13354,7 +13354,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod5"
                     Show          off
@@ -13477,7 +13477,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat6"
                     Show          on
                     Position      [405, 255]
@@ -13508,7 +13508,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat7"
                     Show          on
                     Position      [405, 175]
@@ -13539,7 +13539,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat8"
                     Show          on
                     Position      [405, 95]
@@ -13570,7 +13570,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat9"
                     Show          on
                     Position      [260, 175]
@@ -13601,7 +13601,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat10"
                     Show          on
                     Position      [260, 95]
@@ -14296,7 +14296,7 @@ Plecs {
                   BrowserWidth  100
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod3"
                     Show          off
@@ -14385,7 +14385,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod4"
                     Show          off
@@ -14417,7 +14417,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat5"
                     Show          on
                     Position      [260, 255]
@@ -14448,7 +14448,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod5"
                     Show          off
@@ -14571,7 +14571,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat6"
                     Show          on
                     Position      [405, 255]
@@ -14602,7 +14602,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat7"
                     Show          on
                     Position      [405, 175]
@@ -14633,7 +14633,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat8"
                     Show          on
                     Position      [405, 95]
@@ -14664,7 +14664,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat9"
                     Show          on
                     Position      [260, 175]
@@ -14695,7 +14695,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat10"
                     Show          on
                     Position      [260, 95]
@@ -15156,7 +15156,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Miscellaneous/delta"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/delta"
 " angle"
                     Name          "delta angle"
                     Show          on
@@ -16122,7 +16122,7 @@ Plecs {
                   BrowserWidth  100
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex\\nP"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nP"
 "ower"
                     Name          "Complex\nPower"
                     Show          off
@@ -16249,7 +16249,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex\\nP"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nP"
 "ower"
                     Name          "Complex\nPower1"
                     Show          off
@@ -16281,7 +16281,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex\\nP"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nP"
 "ower"
                     Name          "Complex\nPower2"
                     Show          off
@@ -18043,7 +18043,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Loa"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Loa"
 "d angle"
                     Name          "Complex Load angle"
                     Show          off
@@ -18075,7 +18075,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Loa"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Loa"
 "d angle"
                     Name          "Complex Load angle1"
                     Show          off
@@ -18107,7 +18107,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Loa"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Loa"
 "d angle"
                     Name          "Complex Load angle2"
                     Show          off
@@ -19886,7 +19886,7 @@ Plecs {
               }
               Component {
                 Type          Reference
-                SrcComponent  "Inverter_Library_public/Inverters/Inverter Powe"
+                SrcComponent  "IE_PLECS_Library_Pubic/Inverters/Inverter Powe"
 "r part"
                 Name          "Inverter Power part"
                 Show          on
@@ -22410,7 +22410,7 @@ Plecs {
                   BrowserWidth  100
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod3"
                     Show          off
@@ -22499,7 +22499,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod4"
                     Show          off
@@ -22531,7 +22531,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat5"
                     Show          on
                     Position      [260, 255]
@@ -22562,7 +22562,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod5"
                     Show          off
@@ -22685,7 +22685,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat6"
                     Show          on
                     Position      [405, 255]
@@ -22716,7 +22716,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat7"
                     Show          on
                     Position      [405, 175]
@@ -22747,7 +22747,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat8"
                     Show          on
                     Position      [405, 95]
@@ -22778,7 +22778,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat9"
                     Show          on
                     Position      [260, 175]
@@ -22809,7 +22809,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat10"
                     Show          on
                     Position      [260, 95]
@@ -23434,7 +23434,7 @@ Plecs {
                   BrowserWidth  100
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod3"
                     Show          off
@@ -23523,7 +23523,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod4"
                     Show          off
@@ -23555,7 +23555,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat5"
                     Show          on
                     Position      [260, 255]
@@ -23586,7 +23586,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex Pro"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Pro"
 "d"
                     Name          "Complex Prod5"
                     Show          off
@@ -23709,7 +23709,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat6"
                     Show          on
                     Position      [405, 255]
@@ -23740,7 +23740,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat7"
                     Show          on
                     Position      [405, 175]
@@ -23771,7 +23771,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat8"
                     Show          on
                     Position      [405, 95]
@@ -23802,7 +23802,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat9"
                     Show          on
                     Position      [260, 175]
@@ -23833,7 +23833,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Sat"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Sat"
                     Name          "Sat10"
                     Show          on
                     Position      [260, 95]
@@ -24294,7 +24294,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Miscellaneous/delta"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/delta"
 " angle"
                     Name          "delta angle"
                     Show          on
@@ -25260,7 +25260,7 @@ Plecs {
                   BrowserWidth  100
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex\\nP"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nP"
 "ower"
                     Name          "Complex\nPower"
                     Show          off
@@ -25387,7 +25387,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex\\nP"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nP"
 "ower"
                     Name          "Complex\nPower1"
                     Show          off
@@ -25419,7 +25419,7 @@ Plecs {
                   }
                   Component {
                     Type          Reference
-                    SrcComponent  "Inverter_Library_public/Complex/Complex\\nP"
+                    SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nP"
 "ower"
                     Name          "Complex\nPower2"
                     Show          off
@@ -26613,7 +26613,7 @@ Plecs {
                       }
                       Component {
                         Type          Reference
-                        SrcComponent  "Inverter_Library_public/Miscellaneous/d"
+                        SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/d"
 "elta angle"
                         Name          "delta angle"
                         Show          on
@@ -27000,7 +27000,7 @@ Plecs {
                       }
                       Component {
                         Type          Reference
-                        SrcComponent  "Inverter_Library_public/Miscellaneous/d"
+                        SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/d"
 "elta angle"
                         Name          "delta angle"
                         Show          on
@@ -27387,7 +27387,7 @@ Plecs {
                       }
                       Component {
                         Type          Reference
-                        SrcComponent  "Inverter_Library_public/Miscellaneous/d"
+                        SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/d"
 "elta angle"
                         Name          "delta angle"
                         Show          on
@@ -38517,7 +38517,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/Power"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
               Name          "Power"
               Show          on
               Position      [415, 440]
@@ -38563,7 +38563,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/Power"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
               Name          "Power1"
               Show          on
               Position      [415, 520]
@@ -40044,7 +40044,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/Power"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
               Name          "Power"
               Show          on
               Position      [395, 405]
@@ -40090,7 +40090,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/Power"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
               Name          "Power1"
               Show          on
               Position      [395, 460]
@@ -41286,7 +41286,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/Power"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
               Name          "Power"
               Show          on
               Position      [395, 405]
@@ -41332,7 +41332,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/Power"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
               Name          "Power1"
               Show          on
               Position      [395, 460]
@@ -44054,7 +44054,7 @@ Plecs {
               }
               Component {
                 Type          Reference
-                SrcComponent  "Inverter_Library_public/Transformations/monopha"
+                SrcComponent  "IE_PLECS_Library_Pubic/Transformations/monopha"
 "sor with\\nvariable frequency"
                 Name          "monophasor with\nvariable frequency"
                 Show          off
@@ -44146,7 +44146,7 @@ Plecs {
               }
               Component {
                 Type          Reference
-                SrcComponent  "Inverter_Library_public/Complex/Complex\\nPower"
+                SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nPower"
                 Name          "Complex\nPower"
                 Show          off
                 Position      [370, 165]
@@ -44177,7 +44177,7 @@ Plecs {
               }
               Component {
                 Type          Reference
-                SrcComponent  "Inverter_Library_public/Complex/Complex\\nPower"
+                SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nPower"
                 Name          "Complex\nPower1"
                 Show          off
                 Position      [370, 205]
@@ -44208,7 +44208,7 @@ Plecs {
               }
               Component {
                 Type          Reference
-                SrcComponent  "Inverter_Library_public/Complex/Complex\\nPower"
+                SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nPower"
                 Name          "Complex\nPower2"
                 Show          off
                 Position      [370, 245]
@@ -45023,7 +45023,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/M-RMS wit"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/M-RMS wit"
 "h\\nvariable frequency"
               Name          "M-RMS with\nvariable frequency"
               Show          off
@@ -45065,7 +45065,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/M-RMS wit"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/M-RMS wit"
 "h\\nvariable frequency"
               Name          "M-RMS with\nvariable frequency1"
               Show          off
@@ -45107,7 +45107,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/M-RMS wit"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/M-RMS wit"
 "h\\nvariable frequency"
               Name          "M-RMS with\nvariable frequency2"
               Show          off
@@ -48145,7 +48145,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/monophaso"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/monophaso"
 "r with\\nvariable frequency"
               Name          "monophasor with\nvariable frequency"
               Show          off
@@ -50828,7 +50828,7 @@ Plecs {
             BrowserWidth  100
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Transformations/monophaso"
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/monophaso"
 "r with\\nvariable frequency"
               Name          "monophasor with\nvariable frequency3"
               Show          off
@@ -58146,7 +58146,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Miscellaneous/Turn-on\\/o"
+              SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/Turn-on\\/o"
 "ff Delay"
               Name          "Turn-on/off Delay"
               Show          on
@@ -58920,7 +58920,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Miscellaneous/Turn-on\\/o"
+              SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/Turn-on\\/o"
 "ff Delay"
               Name          "Turn-on/off Delay1"
               Show          off
@@ -59504,7 +59504,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Miscellaneous/duty cycle"
+              SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/duty cycle"
               Name          "duty cycle"
               Show          off
               Position      [180, 100]
@@ -60602,7 +60602,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Miscellaneous/duty cycle"
+              SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/duty cycle"
               Name          "duty cycle"
               Show          off
               Position      [180, 100]
@@ -66383,7 +66383,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Complex/Complex Prod"
+              SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex Prod"
               Name          "Complex Prod"
               Show          off
               Position      [195, 85]
@@ -66414,7 +66414,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Complex/Complex\\nConjuga"
+              SrcComponent  "IE_PLECS_Library_Pubic/Complex/Complex\\nConjuga"
 "te"
               Name          "Complex\nConjugate"
               Show          off
@@ -67731,7 +67731,7 @@ Plecs {
               }
               Component {
                 Type          Reference
-                SrcComponent  "Inverter_Library_public/Miscellaneous/Damper"
+                SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/Damper"
                 Name          "Damper"
                 Show          off
                 Position      [180, 100]
@@ -67925,7 +67925,7 @@ Plecs {
               }
               Component {
                 Type          Reference
-                SrcComponent  "Inverter_Library_public/Miscellaneous/Damper"
+                SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/Damper"
                 Name          "Damper"
                 Show          off
                 Position      [180, 100]
@@ -68108,7 +68108,7 @@ Plecs {
             }
             Component {
               Type          Reference
-              SrcComponent  "Inverter_Library_public/Miscellaneous/delta angle"
+              SrcComponent  "IE_PLECS_Library_Pubic/Miscellaneous/delta angle"
               Name          "delta angle"
               Show          on
               Position      [275, 175]
