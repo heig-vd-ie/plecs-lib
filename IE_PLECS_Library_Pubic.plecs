@@ -52962,8 +52962,9 @@ Plecs {
           CodeGenDiscretizationMethod "2"
           CodeGenTarget "Generic"
           MaskType      base64 "VHJhbnNmb3JtYXRpb24gzrHOsiB0byBkcQ=="
-          MaskDescription "Transformation from a fixed reference frame to a ro"
-"tating reference frame"
+          MaskDescription base64 "VHJhbnNmb3JtYXRpb24gZnJvbSBhIGZpeGVkIHJlZmVy"
+"ZW5jZSBmcmFtZSB0byBhIHJvdGF0aW5nIHJlZmVyZW5jZSBmcmFtZS4gzrEgYW5kIM6yIGNhbiBiZ"
+"SB2ZWN0b3JzLg=="
           MaskDisplayLang "2"
           MaskIconFrame on
           MaskIconOpaque off
@@ -53885,7 +53886,7 @@ Plecs {
           CodeGenTarget "Generic"
           MaskType      base64 "VHJhbnNmb3JtYXRpb24gZHEgdG8gzrHOsg=="
           MaskDescription "Transformation from a rotating reference frame to a"
-" fixed reference frame"
+" fixed reference frame. d and q can be vectors."
           MaskDisplayLang "2"
           MaskIconFrame on
           MaskIconOpaque off
@@ -65711,6 +65712,957 @@ Plecs {
 "html>"
               Position      [580, 125]
             } 
+          }
+        }
+        Component {
+          Type          Subsystem
+          Name          "Grid code"
+          Show          on
+          Position      [70, 415]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-30, -15; 30, 15]
+          SampleTime    "-1"
+          CodeGenDiscretizationMethod "2"
+          CodeGenTarget "Generic"
+          MaskType      "Grid code"
+          MaskDescription "Check if votage and frequency are within the limits"
+" of the grid code. Returns \"1\" as long as the inputs are within the limits."
+          MaskDisplayLang "2"
+          MaskIconFrame on
+          MaskIconOpaque off
+          MaskIconRotates on
+          MaskInit      "wn = 2*pi*fn;\n"
+"%% Grid code limits\n"
+"max_w\t= wn * max_f_pu;\n"
+"min_w = wn * min_f_pu;"
+          Parameter {
+            Variable      "tmax_f"
+            Prompt        "Over-frequency time limits (s)"
+            Type          FreeText
+            Value         "tmax_f"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "tmin_f"
+            Prompt        "Under-frequency time limits (s)"
+            Type          FreeText
+            Value         "tmin_f"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "tmax_u"
+            Prompt        "Over-voltage time limits (s)"
+            Type          FreeText
+            Value         "tmax_u"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "tmin_u"
+            Prompt        "Under-voltage time limits (s)"
+            Type          FreeText
+            Value         "tmin_u"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "max_f_pu"
+            Prompt        "Over-frequency limit values (pu)"
+            Type          FreeText
+            Value         "max_f_pu"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "min_f_pu"
+            Prompt        "Under-frequency limit values (pu)"
+            Type          FreeText
+            Value         "min_f_pu"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "max_u"
+            Prompt        "Over-voltage limit values (pu)"
+            Type          FreeText
+            Value         "max_u"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "min_u"
+            Prompt        "Under-voltage limit values (pu)"
+            Type          FreeText
+            Value         "min_u"
+            Show          off
+            Tunable       off
+            TabName       "Grid Code"
+          }
+          Parameter {
+            Variable      "fn"
+            Prompt        "Nominal frequency (Hz)"
+            Type          FreeText
+            Value         "fn"
+            Show          off
+            Tunable       off
+            TabName       "Nominal"
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, -5]
+            Direction     left
+          }
+          Terminal {
+            Type          Output
+            Position      [34, -5]
+            Direction     right
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, 5]
+            Direction     left
+          }
+          Schematic {
+            Location      [903, 314; 1507, 735]
+            ZoomFactor    1
+            SliderPosition [0, 0]
+            ShowBrowser   off
+            BrowserWidth  100
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay"
+              Show          off
+              Position      [215, 85]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmax_f"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant1"
+              Show          off
+              Position      [145, 85]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "6"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "max_w"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay1"
+              Show          off
+              Position      [215, 120]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmin_f"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant2"
+              Show          off
+              Position      [145, 120]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "3"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "min_w"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay2"
+              Show          off
+              Position      [215, 160]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmax_u"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant3"
+              Show          off
+              Position      [145, 160]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "6"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "max_u"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay3"
+              Show          off
+              Position      [215, 195]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmin_u"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant4"
+              Show          off
+              Position      [145, 195]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "3"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "min_u"
+                Show          off
+              }
+            }
+            Component {
+              Type          SignalDemux
+              Name          "Demux"
+              Show          off
+              Position      [65, 250]
+              Direction     right
+              Flipped       on
+              LabelPosition south
+              Frame         [-7, -15; 2, 15]
+              Parameter {
+                Variable      "Width"
+                Value         "3"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay4"
+              Show          off
+              Position      [215, 235]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmax_u"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant5"
+              Show          off
+              Position      [145, 235]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "6"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "max_u"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay5"
+              Show          off
+              Position      [215, 270]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmin_u"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant6"
+              Show          off
+              Position      [145, 270]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "3"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "min_u"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay6"
+              Show          off
+              Position      [215, 310]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmax_u"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant7"
+              Show          off
+              Position      [145, 310]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "6"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "max_u"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "Components/Control/Delays/Turn-on Delay"
+              Name          "Turn-on Delay7"
+              Show          off
+              Position      [215, 345]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "DeadTimeSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "T_d"
+                Value         "tmin_u"
+                Show          off
+              }
+              Parameter {
+                Variable      "Rounding"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 0]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+            }
+            Component {
+              Type          ConstantRelationalOperator
+              Name          "Compare to\nConstant8"
+              Show          off
+              Position      [145, 345]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-30, -10; 30, 10]
+              Parameter {
+                Variable      "Operator"
+                Value         "3"
+                Show          off
+              }
+              Parameter {
+                Variable      "Threshold"
+                Value         "min_u"
+                Show          off
+              }
+            }
+            Component {
+              Type          LogicalOperator
+              Name          "Logical\nOperator6"
+              Show          off
+              Position      [295, 120]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Operator"
+                Value         "2"
+                Show          off
+              }
+              Parameter {
+                Variable      "Inputs"
+                Value         "8"
+                Show          off
+              }
+            }
+            Component {
+              Type          Input
+              Name          "u rms"
+              Show          on
+              Position      [25, 250]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "1"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "3"
+                Show          off
+              }
+            }
+            Component {
+              Type          Output
+              Name          "ok?"
+              Show          on
+              Position      [480, 120]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "2"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Input
+              Name          "w"
+              Show          on
+              Position      [30, 100]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "3"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "1"
+                Show          off
+              }
+            }
+            Component {
+              Type          LogicalOperator
+              Name          "Logical\nOperator12"
+              Show          off
+              Position      [360, 120]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Operator"
+                Value         "2"
+                Show          off
+              }
+              Parameter {
+                Variable      "Inputs"
+                Value         "1"
+                Show          off
+              }
+            }
+            Component {
+              Type          LogicalOperator
+              Name          "Logical\nOperator13"
+              Show          off
+              Position      [420, 120]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Operator"
+                Value         "6"
+                Show          off
+              }
+              Parameter {
+                Variable      "Inputs"
+                Value         "1"
+                Show          off
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant1"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant2"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay1"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant3"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay2"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant4"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay3"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant5"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay4"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant6"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay5"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant7"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay6"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Compare to\nConstant8"
+              SrcTerminal   2
+              DstComponent  "Turn-on Delay7"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Demux"
+              SrcTerminal   2
+              Points        [75, 240; 75, 195]
+              Branch {
+                Points        [75, 160]
+                DstComponent  "Compare to\nConstant3"
+                DstTerminal   1
+              }
+              Branch {
+                DstComponent  "Compare to\nConstant4"
+                DstTerminal   1
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Demux"
+              SrcTerminal   4
+              Points        [75, 260; 75, 310]
+              Branch {
+                Points        [75, 345]
+                DstComponent  "Compare to\nConstant8"
+                DstTerminal   1
+              }
+              Branch {
+                DstComponent  "Compare to\nConstant7"
+                DstTerminal   1
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Demux"
+              SrcTerminal   3
+              Points        [85, 250]
+              Branch {
+                Points        [85, 270]
+                DstComponent  "Compare to\nConstant6"
+                DstTerminal   1
+              }
+              Branch {
+                Points        [85, 235]
+                DstComponent  "Compare to\nConstant5"
+                DstTerminal   1
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay"
+              SrcTerminal   2
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   2
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay1"
+              SrcTerminal   2
+              Points        [235, 95]
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   3
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay2"
+              SrcTerminal   2
+              Points        [240, 160; 240, 105]
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   4
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay3"
+              SrcTerminal   2
+              Points        [245, 195; 245, 115]
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   5
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay4"
+              SrcTerminal   2
+              Points        [250, 235; 250, 125]
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   6
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay5"
+              SrcTerminal   2
+              Points        [255, 270; 255, 135]
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   7
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay6"
+              SrcTerminal   2
+              Points        [260, 310; 260, 145]
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   8
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Turn-on Delay7"
+              SrcTerminal   2
+              Points        [265, 345]
+              DstComponent  "Logical\nOperator6"
+              DstTerminal   9
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "u rms"
+              SrcTerminal   1
+              DstComponent  "Demux"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "w"
+              SrcTerminal   1
+              Points        [100, 100]
+              Branch {
+                DstComponent  "Compare to\nConstant1"
+                DstTerminal   1
+              }
+              Branch {
+                DstComponent  "Compare to\nConstant2"
+                DstTerminal   1
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Logical\nOperator6"
+              SrcTerminal   1
+              DstComponent  "Logical\nOperator12"
+              DstTerminal   2
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Logical\nOperator12"
+              SrcTerminal   1
+              DstComponent  "Logical\nOperator13"
+              DstTerminal   2
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Logical\nOperator13"
+              SrcTerminal   1
+              DstComponent  "ok?"
+              DstTerminal   1
+            }
           }
         }
       }
