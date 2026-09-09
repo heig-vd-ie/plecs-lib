@@ -72601,6 +72601,406 @@ Plecs {
             }
           }
         }
+        Component {
+          Type          ConfigurableSubsystem
+          Name          "Model Spliter"
+          Show          on
+          Position      [55, 240]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-10, -15; 10, 15]
+          SampleTime    "-1"
+          CodeGenDiscretizationMethod "2"
+          CodeGenTarget "Generic"
+          MaskType      "Model spliter"
+          MaskDescription "Circuit to split up the model into several RT Boxes"
+", or onto differerent cores on the same RT Box.\n"
+"\n"
+"Voltage source:\n"
+"- Should be connected towards a current-source behavior with slow varying dyn"
+"amics\n"
+"\n"
+"Current source:\n"
+"- Should be connected towards a voltage-source behavior with slow varying dyn"
+"amics"
+          MaskDisplay   "if Dialog:get('Configuration')=='1' then\n"
+"\tIcon:text('U')\n"
+"else\n"
+"\tIcon:text('I')\n"
+"end"
+          MaskDisplayLang "2"
+          MaskIconFrame on
+          MaskIconOpaque on
+          MaskIconRotates on
+          MaskDialogCallback "local config = Dialog:get('Configuration')\n"
+"Dialog:set('Ts','Visible',config=='2')"
+          Parameter {
+            Variable      "Ts"
+            Prompt        "Sample Time"
+            Type          FreeText
+            Value         "Ts"
+            Show          off
+            Tunable       off
+            TabName       ""
+          }
+          Terminal {
+            Type          Input
+            Position      [10, -5]
+            Direction     right
+          }
+          Terminal {
+            Type          Output
+            Position      [14, 5]
+            Direction     right
+          }
+          Terminal {
+            Type          Port
+            Position      [-15, 0]
+            Direction     left
+          }
+          TerminalNames { "in", "out", "Port1" }
+          Location      [1414, 418; 2048, 949]
+          ZoomFactor    1
+          SliderPosition [0, 0]
+          ShowBrowser   off
+          BrowserWidth  100
+          Configurations {
+            Name          "Voltage source"
+            Schematic {
+              Component {
+                Type          VoltageSource
+                Name          "V"
+                Show          on
+                Position      [200, 130]
+                Direction     down
+                Flipped       on
+                LabelPosition east
+                Parameter {
+                  Variable      "DiscretizationBehavior"
+                  Value         "1"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "StateSpaceInlining"
+                  Value         "1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Ammeter
+                Name          "Am1"
+                Show          on
+                Position      [200, 190]
+                Direction     down
+                Flipped       on
+                LabelPosition east
+              }
+              Component {
+                Type          Input
+                Name          "in"
+                Show          on
+                Position      [125, 130]
+                Direction     right
+                Flipped       off
+                LabelPosition south
+                Parameter {
+                  Variable      "Index"
+                  Value         "1"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "Width"
+                  Value         "-1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Output
+                Name          "out"
+                Show          on
+                Position      [125, 190]
+                Direction     right
+                Flipped       on
+                LabelPosition south
+                Parameter {
+                  Variable      "Index"
+                  Value         "2"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "Width"
+                  Value         "-1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Port
+                Name          "Port1"
+                Show          on
+                Position      [200, 75]
+                Direction     up
+                Flipped       on
+                LabelPosition east
+                Parameter {
+                  Variable      "Index"
+                  Value         "3"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "Width"
+                  Value         "-1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Ground
+                Name          "Ground"
+                Show          off
+                Position      [200, 260]
+                Direction     up
+                Flipped       off
+                LabelPosition east
+              }
+              Connection {
+                Type          Wire
+                SrcComponent  "Am1"
+                SrcTerminal   1
+                DstComponent  "V"
+                DstTerminal   2
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "in"
+                SrcTerminal   1
+                Points        [145, 130; 175, 130]
+                DstComponent  "V"
+                DstTerminal   3
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Am1"
+                SrcTerminal   3
+                DstComponent  "out"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Wire
+                SrcComponent  "Port1"
+                SrcTerminal   1
+                DstComponent  "V"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Wire
+                SrcComponent  "Ground"
+                SrcTerminal   1
+                DstComponent  "Am1"
+                DstTerminal   2
+              }
+            }
+            Name          "Current source"
+            Schematic {
+              Component {
+                Type          Input
+                Name          "in"
+                Show          on
+                Position      [70, 200]
+                Direction     right
+                Flipped       off
+                LabelPosition south
+                Parameter {
+                  Variable      "Index"
+                  Value         "1"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "Width"
+                  Value         "-1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Output
+                Name          "out"
+                Show          on
+                Position      [70, 140]
+                Direction     right
+                Flipped       on
+                LabelPosition south
+                Parameter {
+                  Variable      "Index"
+                  Value         "2"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "Width"
+                  Value         "-1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Port
+                Name          "Port1"
+                Show          on
+                Position      [200, 80]
+                Direction     down
+                Flipped       off
+                LabelPosition west
+                Parameter {
+                  Variable      "Index"
+                  Value         "3"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "Width"
+                  Value         "-1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          CurrentSource
+                Name          "I1"
+                Show          off
+                Position      [160, 200]
+                Direction     down
+                Flipped       on
+                LabelPosition east
+                Parameter {
+                  Variable      "DiscretizationBehavior"
+                  Value         "1"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "StateSpaceInlining"
+                  Value         "1"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Voltmeter
+                Name          "Vm1"
+                Show          off
+                Position      [200, 140]
+                Direction     down
+                Flipped       on
+                LabelPosition east
+              }
+              Component {
+                Type          Resistor
+                Name          "R1"
+                Show          on
+                Position      [240, 180]
+                Direction     up
+                Flipped       off
+                LabelPosition east
+                Parameter {
+                  Variable      "R"
+                  Value         "1e6"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Delay
+                Name          "Delay"
+                Show          on
+                Position      [115, 200]
+                Direction     right
+                Flipped       off
+                LabelPosition south
+                Parameter {
+                  Variable      "N"
+                  Value         "1"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "X0"
+                  Value         "0"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "Ts"
+                  Value         "Ts"
+                  Show          off
+                }
+              }
+              Component {
+                Type          Ground
+                Name          "Ground"
+                Show          off
+                Position      [200, 265]
+                Direction     up
+                Flipped       off
+                LabelPosition east
+              }
+              Connection {
+                Type          Wire
+                SrcComponent  "I1"
+                SrcTerminal   2
+                Points        [160, 120; 200, 120]
+                Branch {
+                  DstComponent  "Port1"
+                  DstTerminal   1
+                }
+                Branch {
+                  Points        [240, 120]
+                  DstComponent  "R1"
+                  DstTerminal   1
+                }
+                Branch {
+                  DstComponent  "Vm1"
+                  DstTerminal   1
+                }
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Vm1"
+                SrcTerminal   3
+                DstComponent  "out"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "in"
+                SrcTerminal   1
+                DstComponent  "Delay"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Delay"
+                SrcTerminal   2
+                DstComponent  "I1"
+                DstTerminal   3
+              }
+              Connection {
+                Type          Wire
+                SrcComponent  "Ground"
+                SrcTerminal   1
+                Points        [200, 240]
+                Branch {
+                  DstComponent  "Vm1"
+                  DstTerminal   2
+                }
+                Branch {
+                  Points        [160, 240]
+                  DstComponent  "I1"
+                  DstTerminal   1
+                }
+                Branch {
+                  Points        [240, 240]
+                  DstComponent  "R1"
+                  DstTerminal   2
+                }
+              }
+            }
+          }
+          Parameter {
+            Variable      "Configuration"
+            Value         "2"
+            Show          off
+          }
+        }
       }
     }
   }
