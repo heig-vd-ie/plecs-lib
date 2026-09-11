@@ -71515,7 +71515,7 @@ Plecs {
       MaskIconOpaque off
       MaskIconRotates on
       Schematic {
-        Location      [284, 214; 802, 881]
+        Location      [565, 180; 1083, 847]
         ZoomFactor    1.71498
         SliderPosition [0, 0]
         ShowBrowser   off
@@ -73220,15 +73220,20 @@ Plecs {
           CodeGenTarget "Generic"
           MaskType      "Model spliter"
           MaskDescription "Circuit to split up the model into several RT Boxes"
-", or onto differerent cores on the same RT Box.\n"
+" (over SFP), or onto differerent cores on the same RT Box (different Tasks)."
+"\n"
 "\n"
 "Voltage source:\n"
 "- Should be connected towards a current-source behavior with slow varying dyn"
 "amics\n"
 "\n"
-"Current source:\n"
+"Current source (for use with siganl comming over SFP):\n"
 "- Should be connected towards a voltage-source behavior with slow varying dyn"
-"amics"
+"amics\n"
+"\n"
+"Current source with delay (for use with siganl comming from another Task):\n"
+"- Should be connected towards a voltage-source behavior with slow varying dyn"
+"amics\n"
           MaskDisplay   "if Dialog:get('Configuration')=='1' then\n"
 "\tIcon:text('U')\n"
 "else\n"
