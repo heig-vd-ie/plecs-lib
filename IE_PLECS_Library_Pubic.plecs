@@ -71,7 +71,7 @@ Plecs {
   InvalidNetlistFunctionEvaluationMsg "1"
   IncompatibleInitialConditionMsg "2"
   Schematic {
-    Location      [236, 312; 582, 538]
+    Location      [253, 485; 599, 764]
     ZoomFactor    1
     SliderPosition [0, 0]
     ShowBrowser   off
@@ -75219,7 +75219,7 @@ Plecs {
       MaskIconOpaque off
       MaskIconRotates on
       Schematic {
-        Location      [565, 180; 1083, 847]
+        Location      [1002, 194; 1520, 861]
         ZoomFactor    1.71498
         SliderPosition [0, 0]
         ShowBrowser   off
@@ -76929,15 +76929,20 @@ Plecs {
 "\n"
 "Voltage source:\n"
 "- Should be connected towards a current-source behavior with slow varying dyn"
-"amics\n"
+"amics.\n"
 "\n"
 "Current source (for use with siganl comming over SFP):\n"
 "- Should be connected towards a voltage-source behavior with slow varying dyn"
-"amics\n"
+"amics.\n"
+"- A first order low-pass filter with a time constant of 10x the sample time i"
+"s applied to the voltage output.\n"
 "\n"
 "Current source with delay (for use with siganl comming from another Task):\n"
 "- Should be connected towards a voltage-source behavior with slow varying dyn"
-"amics\n"
+"amics.\n"
+"- Current input is delayed by one sample.\n"
+"- A first order low-pass filter with a time constant of 10x the sample time i"
+"s applied to the voltage output.\n"
           MaskDisplay   "if Dialog:get('Configuration')=='1' then\n"
 "\tIcon:text('U')\n"
 "else\n"
@@ -76947,14 +76952,28 @@ Plecs {
           MaskIconFrame on
           MaskIconOpaque on
           MaskIconRotates on
+          MaskInit      "if isnan(T)\n"
+"\tT=0;\n"
+"else\n"
+"\tT = 10*Ts;\n"
+"end"
           MaskDialogCallback "local config = Dialog:get('Configuration')\n"
-"Dialog:set('Ts','Visible',config=='3')"
+"Dialog:set('Ts','Visible',config~='1')\n"
+"Dialog:set('R','Visible',config~='1')"
           Parameter {
             Variable      "Ts"
-            Prompt        "Sample Time of zero order hold on current source (s"
-")"
+            Prompt        "Sample Time (s)"
             Type          FreeText
             Value         "Ts"
+            Show          off
+            Tunable       off
+            TabName       ""
+          }
+          Parameter {
+            Variable      "R"
+            Prompt        "Current source parallel resistance (Ohm)"
+            Type          FreeText
+            Value         "1e6"
             Show          off
             Tunable       off
             TabName       ""
@@ -77157,7 +77176,7 @@ Plecs {
                 Type          Port
                 Name          "Port1"
                 Show          on
-                Position      [200, 80]
+                Position      [280, 80]
                 Direction     down
                 Flipped       off
                 LabelPosition west
@@ -77176,7 +77195,7 @@ Plecs {
                 Type          CurrentSource
                 Name          "I1"
                 Show          off
-                Position      [160, 200]
+                Position      [240, 200]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -77195,7 +77214,7 @@ Plecs {
                 Type          Voltmeter
                 Name          "Vm1"
                 Show          off
-                Position      [200, 140]
+                Position      [280, 140]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -77204,7 +77223,7 @@ Plecs {
                 Type          Resistor
                 Name          "R1"
                 Show          on
-                Position      [240, 180]
+                Position      [320, 180]
                 Direction     up
                 Flipped       off
                 LabelPosition east
@@ -77218,22 +77237,47 @@ Plecs {
                 Type          Ground
                 Name          "Ground"
                 Show          off
-                Position      [200, 265]
+                Position      [280, 265]
                 Direction     up
                 Flipped       off
                 LabelPosition east
+              }
+              Component {
+                Type          TransferFunction
+                Name          "Transfer Fcn"
+                Show          off
+                Position      [165, 140]
+                Direction     right
+                Flipped       on
+                LabelPosition south
+                Frame         [-30, -15; 30, 15]
+                Parameter {
+                  Variable      "Numerator"
+                  Value         "[1]"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "Denominator"
+                  Value         "[T 1]"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "X0"
+                  Value         "0"
+                  Show          off
+                }
               }
               Connection {
                 Type          Wire
                 SrcComponent  "I1"
                 SrcTerminal   2
-                Points        [160, 120; 200, 120]
+                Points        [240, 120; 280, 120]
                 Branch {
                   DstComponent  "Port1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [240, 120]
+                  Points        [320, 120]
                   DstComponent  "R1"
                   DstTerminal   1
                 }
@@ -77243,28 +77287,21 @@ Plecs {
                 }
               }
               Connection {
-                Type          Signal
-                SrcComponent  "Vm1"
-                SrcTerminal   3
-                DstComponent  "out"
-                DstTerminal   1
-              }
-              Connection {
                 Type          Wire
                 SrcComponent  "Ground"
                 SrcTerminal   1
-                Points        [200, 240]
+                Points        [280, 240]
                 Branch {
                   DstComponent  "Vm1"
                   DstTerminal   2
                 }
                 Branch {
-                  Points        [160, 240]
+                  Points        [240, 240]
                   DstComponent  "I1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [240, 240]
+                  Points        [320, 240]
                   DstComponent  "R1"
                   DstTerminal   2
                 }
@@ -77275,6 +77312,20 @@ Plecs {
                 SrcTerminal   1
                 DstComponent  "I1"
                 DstTerminal   3
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Vm1"
+                SrcTerminal   3
+                DstComponent  "Transfer Fcn"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Transfer Fcn"
+                SrcTerminal   2
+                DstComponent  "out"
+                DstTerminal   1
               }
             }
             Name          "Current source with delay"
@@ -77321,7 +77372,7 @@ Plecs {
                 Type          Port
                 Name          "Port1"
                 Show          on
-                Position      [200, 80]
+                Position      [280, 80]
                 Direction     down
                 Flipped       off
                 LabelPosition west
@@ -77340,7 +77391,7 @@ Plecs {
                 Type          CurrentSource
                 Name          "I1"
                 Show          off
-                Position      [160, 200]
+                Position      [240, 200]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -77359,7 +77410,7 @@ Plecs {
                 Type          Voltmeter
                 Name          "Vm1"
                 Show          off
-                Position      [200, 140]
+                Position      [280, 140]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -77368,7 +77419,7 @@ Plecs {
                 Type          Resistor
                 Name          "R1"
                 Show          on
-                Position      [240, 180]
+                Position      [320, 180]
                 Direction     up
                 Flipped       off
                 LabelPosition east
@@ -77382,7 +77433,7 @@ Plecs {
                 Type          Delay
                 Name          "Delay"
                 Show          on
-                Position      [115, 200]
+                Position      [165, 200]
                 Direction     right
                 Flipped       off
                 LabelPosition south
@@ -77406,22 +77457,47 @@ Plecs {
                 Type          Ground
                 Name          "Ground"
                 Show          off
-                Position      [200, 265]
+                Position      [280, 265]
                 Direction     up
                 Flipped       off
                 LabelPosition east
+              }
+              Component {
+                Type          TransferFunction
+                Name          "Transfer Fcn"
+                Show          off
+                Position      [165, 140]
+                Direction     right
+                Flipped       on
+                LabelPosition south
+                Frame         [-30, -15; 30, 15]
+                Parameter {
+                  Variable      "Numerator"
+                  Value         "[1]"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "Denominator"
+                  Value         "[T 1]"
+                  Show          off
+                }
+                Parameter {
+                  Variable      "X0"
+                  Value         "0"
+                  Show          off
+                }
               }
               Connection {
                 Type          Wire
                 SrcComponent  "I1"
                 SrcTerminal   2
-                Points        [160, 120; 200, 120]
+                Points        [240, 120; 280, 120]
                 Branch {
                   DstComponent  "Port1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [240, 120]
+                  Points        [320, 120]
                   DstComponent  "R1"
                   DstTerminal   1
                 }
@@ -77429,13 +77505,6 @@ Plecs {
                   DstComponent  "Vm1"
                   DstTerminal   1
                 }
-              }
-              Connection {
-                Type          Signal
-                SrcComponent  "Vm1"
-                SrcTerminal   3
-                DstComponent  "out"
-                DstTerminal   1
               }
               Connection {
                 Type          Signal
@@ -77455,27 +77524,41 @@ Plecs {
                 Type          Wire
                 SrcComponent  "Ground"
                 SrcTerminal   1
-                Points        [200, 240]
+                Points        [280, 240]
                 Branch {
                   DstComponent  "Vm1"
                   DstTerminal   2
                 }
                 Branch {
-                  Points        [160, 240]
+                  Points        [240, 240]
                   DstComponent  "I1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [240, 240]
+                  Points        [320, 240]
                   DstComponent  "R1"
                   DstTerminal   2
                 }
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Vm1"
+                SrcTerminal   3
+                DstComponent  "Transfer Fcn"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Transfer Fcn"
+                SrcTerminal   2
+                DstComponent  "out"
+                DstTerminal   1
               }
             }
           }
           Parameter {
             Variable      "Configuration"
-            Value         "1"
+            Value         "3"
             Show          off
           }
         }
