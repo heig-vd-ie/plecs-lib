@@ -76952,8 +76952,8 @@ Plecs {
           MaskIconFrame on
           MaskIconOpaque on
           MaskIconRotates on
-          MaskInit      "if isnan(T)\n"
-"\tT=0;\n"
+          MaskInit      "if isnan(Ts)\n"
+"\tTs=0;\n"
 "else\n"
 "\tT = 10*Ts;\n"
 "end"
