@@ -42502,7 +42502,7 @@ Plecs {
         }
         Component {
           Type          Subsystem
-          Name          "Low voltage cable (RL)"
+          Name          "Low voltage RL cable"
           Show          on
           Position      [235, 280]
           Direction     up
@@ -42972,6 +42972,838 @@ Plecs {
               Component     "Gain2"
               Path          ""
               Signals       {"Output"}
+            }
+          }
+        }
+        Component {
+          Type          Subsystem
+          Name          "Low voltage RL cable 3L+N"
+          Show          on
+          Position      [235, 340]
+          Direction     up
+          Flipped       off
+          LabelPosition north
+          Frame         [-40, -15; 40, 15]
+          SampleTime    "-1"
+          CodeGenDiscretizationMethod "2"
+          CodeGenTarget "Generic"
+          MaskType      "Simple RL low voltage cable 3L+N"
+          MaskDescription "Predefined cable caracteristics based on cross-sect"
+"ions"
+          MaskDisplay   "local length \t\t= 70\n"
+"local thickness \t= 20\n"
+"\n"
+"local length2 = length/2\n"
+"local thickness2 = thickness/2\n"
+"\n"
+"-- Draw cable\n"
+"Icon:ellipse(-length2,0,4,thickness2)\n"
+"Icon:line({-length2,length2},{thickness2,thickness2})\n"
+"Icon:line({-length2,length2},{-thickness2,-thickness2})\n"
+"Icon:arc(length2,0,4,thickness2,270,180)\n"
+"Icon:line({-length2,-length2-5},{0,0})\n"
+"Icon:line({length2+5,length2+4},{0,0})\n"
+"\n"
+"Icon:circle(-length2-6,-thickness2+2,0.5)\n"
+"\n"
+"-- RL symbol\n"
+"--Icon:patch(Vector{-5,-5,5,5}+10,Vector{2,-2,-2,2})\n"
+"Icon:arc(6,0,2,2,0,180)\n"
+"Icon:arc(10,0,2,2,0,180)\n"
+"Icon:arc(14,0,2,2,0,180)\n"
+"\n"
+"Icon:line(Vector{-6,-6,6,6,-6}-10,Vector{2,-2,-2,2,2})\n"
+"Icon:line({-4,4},{0,0})\n"
+"Icon:line({-16,-22},{0,0})\n"
+"Icon:line({16,22},{0,0})\n"
+          MaskDisplayLang "2"
+          MaskIconFrame off
+          MaskIconOpaque on
+          MaskIconRotates on
+          MaskInit      "%% Source: Brugg Cables (GKN)\n"
+"\n"
+"if Cable == 1 % 6mm2\n"
+"\tIn = 38;\n"
+"\tR_ = 3.564;\n"
+"\tL_ = 270e-6;\n"
+"elseif Cable == 2 %10mm2\n"
+"\tIn = 52;\n"
+"\tR_ = 2.118;\n"
+"\tL_ = 254.6e-6;\n"
+"elseif Cable == 3 % 16mm2\n"
+"\tIn = 68;\n"
+"\tR_ = 1.331;\n"
+"\tL_ = 238e-6;\n"
+"elseif Cable == 4 %25mm2\n"
+"\tIn = 89;\n"
+"\tR_ = 0.842;\n"
+"\tL_ = 238e-6;\n"
+"elseif Cable == 5 %50mm2\n"
+"\tIn = 130;\n"
+"\tR_ = 0.449;\n"
+"\tL_ = 229e-6;\n"
+"elseif Cable == 6 %95mm2\n"
+"\tIn = 196;\n"
+"\tR_ = 0.225;\n"
+"\tL_ = 222e-6;\n"
+"elseif Cable == 7 %150mm2\n"
+"\tIn = 252;\n"
+"\tR_ = 0.146;\n"
+"\tL_ = 222e-6;\n"
+"elseif Cable == 8 %240mm2\n"
+"\tIn = 333;\n"
+"\tR_ = 0.091;\n"
+"\tL_ = 2196e-6;\n"
+"end\n"
+"\n"
+"R = R_*l;\n"
+"L = L_*l;\n"
+"Sn = 3*Un*In;"
+          Parameter {
+            Variable      "Cable"
+            Prompt        "Select Low Voltage Cable"
+            Type          FixedText
+            PossibleValues {"6 mm2 (In = 38A)", "10 mm2 (In = 52A)", "16 mm2 ("
+"In = 68A)", "25 mm2 (In = 89A)", "50 mm2 (In = 130A)", "95 mm2 (In = 196A)", ""
+"150 mm2 (In = 252A)", "240 mm2 (In = 333A)"}
+            Value         "7"
+            Show          off
+            Tunable       off
+            TabName       "Main"
+          }
+          Parameter {
+            Variable      "Un"
+            Prompt        "Nominal voltage (V)"
+            Type          FreeText
+            Value         "230"
+            Show          off
+            Tunable       off
+            TabName       "Main"
+          }
+          Parameter {
+            Variable      "l"
+            Prompt        "Length (km)"
+            Type          FreeText
+            Value         "0.1"
+            Show          off
+            Tunable       off
+            TabName       "Main"
+          }
+          Terminal {
+            Type          Port
+            Position      [45, 0]
+            Direction     right
+          }
+          Terminal {
+            Type          Port
+            Position      [-45, 0]
+            Direction     left
+          }
+          Schematic {
+            Location      [2261, 351; 2864, 843]
+            ZoomFactor    1
+            SliderPosition [0, 0]
+            ShowBrowser   off
+            BrowserWidth  100
+            Component {
+              Type          Port
+              Name          "Out"
+              Show          on
+              Position      [440, 105]
+              Direction     right
+              Flipped       on
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "1"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "4"
+                Show          off
+              }
+            }
+            Component {
+              Type          Port
+              Name          "In"
+              Show          on
+              Position      [120, 105]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "2"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "4"
+                Show          off
+              }
+            }
+            Component {
+              Type          Resistor
+              Name          "R1"
+              Show          on
+              Position      [220, 105]
+              Direction     left
+              Flipped       off
+              LabelPosition north
+              Parameter {
+                Variable      "R"
+                Value         "R"
+                Show          off
+              }
+            }
+            Component {
+              Type          Inductor
+              Name          "L1"
+              Show          on
+              Position      [340, 105]
+              Direction     left
+              Flipped       off
+              LabelPosition north
+              Parameter {
+                Variable      "L"
+                Value         "L"
+                Show          off
+              }
+              Parameter {
+                Variable      "i_init"
+                Value         "0"
+                Show          off
+              }
+            }
+            Component {
+              Type          Voltmeter
+              Name          "Vm1"
+              Show          on
+              Position      [180, 160]
+              Direction     up
+              Flipped       off
+              LabelPosition west
+            }
+            Component {
+              Type          Ground
+              Name          "Ground"
+              Show          off
+              Position      [180, 205]
+              Direction     up
+              Flipped       off
+              LabelPosition east
+            }
+            Component {
+              Type          Voltmeter
+              Name          "Vm2"
+              Show          on
+              Position      [400, 160]
+              Direction     up
+              Flipped       off
+              LabelPosition west
+            }
+            Component {
+              Type          Ground
+              Name          "Ground1"
+              Show          off
+              Position      [400, 205]
+              Direction     up
+              Flipped       off
+              LabelPosition east
+            }
+            Component {
+              Type          Ammeter
+              Name          "Am1"
+              Show          on
+              Position      [280, 105]
+              Direction     right
+              Flipped       on
+              LabelPosition north
+            }
+            Component {
+              Type          Gain
+              Name          "Gain"
+              Show          on
+              Position      [240, 160]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "1/Un"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Component {
+              Type          Gain
+              Name          "Gain1"
+              Show          on
+              Position      [455, 160]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "1/Un"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Component {
+              Type          Gain
+              Name          "Gain2"
+              Show          on
+              Position      [320, 160]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "1/In"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
+              Name          "Power"
+              Show          on
+              Position      [320, 280]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "wn"
+                Value         "wn"
+                Show          off
+              }
+              Parameter {
+                Variable      "Real_pu"
+                Value         "2"
+                Show          off
+              }
+              Parameter {
+                Variable      "Configuration"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, -5]
+                Direction     left
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [0, -15]
+                Direction     up
+              }
+            }
+            Component {
+              Type          PlecsProbe
+              Name          "u in"
+              Show          on
+              Position      [160, 275]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Probe {
+                Component     "Gain"
+                Path          "Grid components/Low voltage RL cable 3L+N"
+                Signals       {"Output"}
+              }
+            }
+            Component {
+              Type          SignalSelector
+              Name          "Selector"
+              Show          off
+              Position      [220, 275]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "InputWidth"
+                Value         "4"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputIndices"
+                Value         "[1 2 3]"
+                Show          off
+              }
+            }
+            Component {
+              Type          PlecsProbe
+              Name          "i"
+              Show          on
+              Position      [160, 320]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Probe {
+                Component     "Gain2"
+                Path          "Grid components/Low voltage RL cable 3L+N"
+                Signals       {"Output"}
+              }
+            }
+            Component {
+              Type          SignalSelector
+              Name          "Selector1"
+              Show          off
+              Position      [220, 320]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "InputWidth"
+                Value         "4"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputIndices"
+                Value         "[1 2 3]"
+                Show          off
+              }
+            }
+            Component {
+              Type          Reference
+              SrcComponent  "IE_PLECS_Library_Pubic/Transformations/Power"
+              Name          "Power1"
+              Show          on
+              Position      [320, 370]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Frame         [-15, -15; 15, 15]
+              Parameter {
+                Variable      "wn"
+                Value         "wn"
+                Show          off
+              }
+              Parameter {
+                Variable      "Real_pu"
+                Value         "2"
+                Show          off
+              }
+              Parameter {
+                Variable      "Configuration"
+                Value         "1"
+                Show          off
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, -5]
+                Direction     left
+              }
+              Terminal {
+                Type          Input
+                Position      [-15, 5]
+                Direction     left
+              }
+              Terminal {
+                Type          Output
+                Position      [19, 0]
+                Direction     right
+              }
+              Terminal {
+                Type          Input
+                Position      [0, -15]
+                Direction     up
+              }
+            }
+            Component {
+              Type          PlecsProbe
+              Name          "u out"
+              Show          on
+              Position      [160, 365]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Probe {
+                Component     "Gain1"
+                Path          "Grid components/Low voltage RL cable 3L+N"
+                Signals       {"Output"}
+              }
+            }
+            Component {
+              Type          SignalSelector
+              Name          "Selector2"
+              Show          off
+              Position      [220, 365]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "InputWidth"
+                Value         "4"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputIndices"
+                Value         "[1 2 3]"
+                Show          off
+              }
+            }
+            Component {
+              Type          Gain
+              Name          "PQS in"
+              Show          on
+              Position      [400, 280]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "Sn"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Component {
+              Type          Gain
+              Name          "PQS out"
+              Show          on
+              Position      [400, 370]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "Sn"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Connection {
+              Type          Wire
+              SrcComponent  "Ground"
+              SrcTerminal   1
+              DstComponent  "Vm1"
+              DstTerminal   2
+            }
+            Connection {
+              Type          Wire
+              SrcComponent  "L1"
+              SrcTerminal   2
+              Points        [400, 105]
+              Branch {
+                DstComponent  "Out"
+                DstTerminal   1
+              }
+              Branch {
+                DstComponent  "Vm2"
+                DstTerminal   1
+              }
+            }
+            Connection {
+              Type          Wire
+              SrcComponent  "Vm2"
+              SrcTerminal   2
+              DstComponent  "Ground1"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Wire
+              SrcComponent  "R1"
+              SrcTerminal   2
+              DstComponent  "Am1"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Wire
+              SrcComponent  "Am1"
+              SrcTerminal   2
+              DstComponent  "L1"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Vm1"
+              SrcTerminal   3
+              DstComponent  "Gain"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Vm2"
+              SrcTerminal   3
+              DstComponent  "Gain1"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Am1"
+              SrcTerminal   3
+              Points        [280, 160]
+              DstComponent  "Gain2"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Wire
+              SrcComponent  "R1"
+              SrcTerminal   1
+              Points        [180, 105]
+              Branch {
+                DstComponent  "Vm1"
+                DstTerminal   1
+              }
+              Branch {
+                DstComponent  "In"
+                DstTerminal   1
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "u in"
+              SrcTerminal   1
+              DstComponent  "Selector"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Selector"
+              SrcTerminal   2
+              DstComponent  "Power"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "i"
+              SrcTerminal   1
+              DstComponent  "Selector1"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Selector1"
+              SrcTerminal   2
+              Points        [265, 320]
+              Branch {
+                Points        [265, 285]
+                DstComponent  "Power"
+                DstTerminal   2
+              }
+              Branch {
+                Points        [265, 375]
+                DstComponent  "Power1"
+                DstTerminal   2
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "u out"
+              SrcTerminal   1
+              DstComponent  "Selector2"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Power"
+              SrcTerminal   3
+              DstComponent  "PQS in"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Power1"
+              SrcTerminal   3
+              DstComponent  "PQS out"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Selector2"
+              SrcTerminal   2
+              DstComponent  "Power1"
+              DstTerminal   1
+            }
+          }
+          MaskProbe {
+            Name          "Input Voltage (V)"
+            Probe {
+              Component     "Vm1"
+              Path          ""
+              Signals       {"Measured voltage"}
+            }
+          }
+          MaskProbe {
+            Name          "Input Voltage (pu)"
+            Probe {
+              Component     "Gain"
+              Path          ""
+              Signals       {"Output"}
+            }
+          }
+          MaskProbe {
+            Name          "Output Voltage (V)"
+            Probe {
+              Component     "Vm2"
+              Path          ""
+              Signals       {"Measured voltage"}
+            }
+          }
+          MaskProbe {
+            Name          "Output Voltage (pu)"
+            Probe {
+              Component     "Gain1"
+              Path          ""
+              Signals       {"Output"}
+            }
+          }
+          MaskProbe {
+            Name          "Current (A)"
+            Probe {
+              Component     "Gain2"
+              Path          ""
+              Signals       {"Input"}
+            }
+          }
+          MaskProbe {
+            Name          "Current (pu)"
+            Probe {
+              Component     "Gain2"
+              Path          ""
+              Signals       {"Output"}
+            }
+          }
+          MaskProbe {
+            Name          "PQS in (W,Var,VA)"
+            Probe {
+              Component     "PQS in"
+              Path          ""
+              Signals       {"Output"}
+            }
+          }
+          MaskProbe {
+            Name          "pqs in (pu)"
+            Probe {
+              Component     "PQS in"
+              Path          ""
+              Signals       {"Input"}
+            }
+          }
+          MaskProbe {
+            Name          "PQS out (W,Var,VA)"
+            Probe {
+              Component     "PQS out"
+              Path          ""
+              Signals       {"Output"}
+            }
+          }
+          MaskProbe {
+            Name          "pqs out (pu)"
+            Probe {
+              Component     "PQS out"
+              Path          ""
+              Signals       {"Input"}
             }
           }
         }
