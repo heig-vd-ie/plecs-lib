@@ -45505,7 +45505,7 @@ Plecs {
       Schematic {
         Location      [290, 351; 1014, 715]
         ZoomFactor    1.30957
-        SliderPosition [0, 86]
+        SliderPosition [0, 83]
         ShowBrowser   off
         BrowserWidth  100
         Component {
@@ -53340,7 +53340,7 @@ Plecs {
             Direction     left
           }
           Schematic {
-            Location      [557, 602; 1635, 1007]
+            Location      [1352, 716; 2430, 1121]
             ZoomFactor    1
             SliderPosition [0, 0]
             ShowBrowser   off
@@ -53820,6 +53820,40 @@ Plecs {
                 Show          off
               }
             }
+            Component {
+              Type          Gain
+              Name          "Gain1"
+              Show          off
+              Position      [140, 65]
+              Direction     right
+              Flipped       on
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
             Connection {
               Type          Signal
               SrcComponent  "Imag2"
@@ -53912,13 +53946,6 @@ Plecs {
             }
             Connection {
               Type          Signal
-              SrcComponent  "Selector"
-              SrcTerminal   2
-              DstComponent  "Demux"
-              DstTerminal   1
-            }
-            Connection {
-              Type          Signal
               SrcComponent  "Demux"
               SrcTerminal   2
               Points        [230, 120]
@@ -53983,6 +54010,28 @@ Plecs {
               SrcTerminal   2
               DstComponent  "Gain"
               DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Selector"
+              SrcTerminal   2
+              Points        [170, 125]
+              Branch {
+                DstComponent  "Demux"
+                DstTerminal   1
+              }
+              Branch {
+                DstComponent  "Gain1"
+                DstTerminal   1
+              }
+            }
+          }
+          MaskProbe {
+            Name          "012 [3x real, 3x imag]"
+            Probe {
+              Component     "Gain1"
+              Path          ""
+              Signals       {"Input"}
             }
           }
         }
