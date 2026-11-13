@@ -62,16 +62,15 @@ Plecs {
   OperatingPointAbsoluteNewtonTolerance "1e-12"
   OperatingPointNodalVoltageNewtonTolerance "1e-6"
   SpiceTemperature "27"
-  SpiceGMin     "0"
+  SpiceShuntGMin "0"
   SpiceInductorRPar "0"
   SpiceInductorRSer "0"
   SpiceCapacitorGPar "0"
-  SpiceCapacitorRSer "0"
   NetlistParserDetails "2"
   InvalidNetlistFunctionEvaluationMsg "1"
   IncompatibleInitialConditionMsg "2"
   Schematic {
-    Location      [253, 485; 599, 764]
+    Location      [1369, 465; 1715, 744]
     ZoomFactor    1
     SliderPosition [0, 0]
     ShowBrowser   off
@@ -77840,10 +77839,13 @@ Plecs {
 "end"
           MaskDialogCallback "local config = Dialog:get('Configuration')\n"
 "Dialog:set('Ts','Visible',config~='1')\n"
-"Dialog:set('R','Visible',config~='1')"
+"Dialog:set('R','Visible',config~='1')\n"
+"Dialog:set('Usat','Visible',config~='1')\n"
+"Dialog:set('Isat','Visible',config=='1')\n"
+"\n"
           Parameter {
             Variable      "Ts"
-            Prompt        "Sample Time (s)"
+            Prompt        "Sample Time (s) "
             Type          FreeText
             Value         "Ts"
             Show          off
@@ -77852,9 +77854,29 @@ Plecs {
           }
           Parameter {
             Variable      "R"
-            Prompt        "Current source parallel resistance (Ohm)"
+            Prompt        "Current source parallel resistance (Ohm) "
             Type          FreeText
-            Value         "1e6"
+            Value         "100*Zn"
+            Show          off
+            Tunable       off
+            TabName       ""
+          }
+          Parameter {
+            Variable      "Usat"
+            Prompt        "Output voltage saturation limit (V) (the same ampli"
+"tude applies in + and - ) "
+            Type          FreeText
+            Value         "Inf"
+            Show          off
+            Tunable       off
+            TabName       ""
+          }
+          Parameter {
+            Variable      "Isat"
+            Prompt        "Output current saturation limit (A) (the same ampli"
+"tude applies in + and - ) "
+            Type          FreeText
+            Value         "Inf"
             Show          off
             Tunable       off
             TabName       ""
@@ -77887,7 +77909,7 @@ Plecs {
                 Type          VoltageSource
                 Name          "V"
                 Show          on
-                Position      [200, 130]
+                Position      [280, 130]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -77906,7 +77928,7 @@ Plecs {
                 Type          Ammeter
                 Name          "Am1"
                 Show          on
-                Position      [200, 190]
+                Position      [280, 190]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -77953,7 +77975,7 @@ Plecs {
                 Type          Port
                 Name          "Port1"
                 Show          on
-                Position      [200, 75]
+                Position      [280, 75]
                 Direction     up
                 Flipped       on
                 LabelPosition east
@@ -77972,10 +77994,29 @@ Plecs {
                 Type          Ground
                 Name          "Ground"
                 Show          off
-                Position      [200, 260]
+                Position      [280, 260]
                 Direction     up
                 Flipped       off
                 LabelPosition east
+              }
+              Component {
+                Type          Saturation
+                Name          "Saturation"
+                Show          off
+                Position      [205, 190]
+                Direction     right
+                Flipped       on
+                LabelPosition south
+                Parameter {
+                  Variable      "UpperLimit"
+                  Value         "Isat"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "LowerLimit"
+                  Value         "-Isat"
+                  Show          on
+                }
               }
               Connection {
                 Type          Wire
@@ -77992,13 +78033,6 @@ Plecs {
                 DstTerminal   3
               }
               Connection {
-                Type          Signal
-                SrcComponent  "Am1"
-                SrcTerminal   3
-                DstComponent  "out"
-                DstTerminal   1
-              }
-              Connection {
                 Type          Wire
                 SrcComponent  "Port1"
                 SrcTerminal   1
@@ -78011,6 +78045,20 @@ Plecs {
                 SrcTerminal   1
                 DstComponent  "Am1"
                 DstTerminal   2
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Am1"
+                SrcTerminal   3
+                DstComponent  "Saturation"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Saturation"
+                SrcTerminal   2
+                DstComponent  "out"
+                DstTerminal   1
               }
             }
             Name          "Current source"
@@ -78057,7 +78105,7 @@ Plecs {
                 Type          Port
                 Name          "Port1"
                 Show          on
-                Position      [280, 80]
+                Position      [335, 80]
                 Direction     down
                 Flipped       off
                 LabelPosition west
@@ -78076,7 +78124,7 @@ Plecs {
                 Type          CurrentSource
                 Name          "I1"
                 Show          off
-                Position      [240, 200]
+                Position      [295, 200]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -78095,7 +78143,7 @@ Plecs {
                 Type          Voltmeter
                 Name          "Vm1"
                 Show          off
-                Position      [280, 140]
+                Position      [335, 140]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -78104,7 +78152,7 @@ Plecs {
                 Type          Resistor
                 Name          "R1"
                 Show          on
-                Position      [320, 180]
+                Position      [375, 180]
                 Direction     up
                 Flipped       off
                 LabelPosition east
@@ -78118,7 +78166,7 @@ Plecs {
                 Type          Ground
                 Name          "Ground"
                 Show          off
-                Position      [280, 265]
+                Position      [335, 265]
                 Direction     up
                 Flipped       off
                 LabelPosition east
@@ -78127,7 +78175,7 @@ Plecs {
                 Type          TransferFunction
                 Name          "Transfer Fcn"
                 Show          off
-                Position      [165, 140]
+                Position      [220, 140]
                 Direction     right
                 Flipped       on
                 LabelPosition south
@@ -78148,17 +78196,36 @@ Plecs {
                   Show          off
                 }
               }
+              Component {
+                Type          Saturation
+                Name          "Saturation"
+                Show          off
+                Position      [140, 140]
+                Direction     right
+                Flipped       on
+                LabelPosition south
+                Parameter {
+                  Variable      "UpperLimit"
+                  Value         "Usat"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "LowerLimit"
+                  Value         "-Usat"
+                  Show          on
+                }
+              }
               Connection {
                 Type          Wire
                 SrcComponent  "I1"
                 SrcTerminal   2
-                Points        [240, 120; 280, 120]
+                Points        [295, 120; 335, 120]
                 Branch {
                   DstComponent  "Port1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [320, 120]
+                  Points        [375, 120]
                   DstComponent  "R1"
                   DstTerminal   1
                 }
@@ -78171,18 +78238,18 @@ Plecs {
                 Type          Wire
                 SrcComponent  "Ground"
                 SrcTerminal   1
-                Points        [280, 240]
+                Points        [335, 240]
                 Branch {
                   DstComponent  "Vm1"
                   DstTerminal   2
                 }
                 Branch {
-                  Points        [240, 240]
+                  Points        [295, 240]
                   DstComponent  "I1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [320, 240]
+                  Points        [375, 240]
                   DstComponent  "R1"
                   DstTerminal   2
                 }
@@ -78204,6 +78271,13 @@ Plecs {
               Connection {
                 Type          Signal
                 SrcComponent  "Transfer Fcn"
+                SrcTerminal   2
+                DstComponent  "Saturation"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Saturation"
                 SrcTerminal   2
                 DstComponent  "out"
                 DstTerminal   1
@@ -78253,7 +78327,7 @@ Plecs {
                 Type          Port
                 Name          "Port1"
                 Show          on
-                Position      [280, 80]
+                Position      [360, 80]
                 Direction     down
                 Flipped       off
                 LabelPosition west
@@ -78272,7 +78346,7 @@ Plecs {
                 Type          CurrentSource
                 Name          "I1"
                 Show          off
-                Position      [240, 200]
+                Position      [320, 200]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -78291,7 +78365,7 @@ Plecs {
                 Type          Voltmeter
                 Name          "Vm1"
                 Show          off
-                Position      [280, 140]
+                Position      [360, 140]
                 Direction     down
                 Flipped       on
                 LabelPosition east
@@ -78300,7 +78374,7 @@ Plecs {
                 Type          Resistor
                 Name          "R1"
                 Show          on
-                Position      [320, 180]
+                Position      [400, 180]
                 Direction     up
                 Flipped       off
                 LabelPosition east
@@ -78314,7 +78388,7 @@ Plecs {
                 Type          Delay
                 Name          "Delay"
                 Show          on
-                Position      [165, 200]
+                Position      [245, 200]
                 Direction     right
                 Flipped       off
                 LabelPosition south
@@ -78338,7 +78412,7 @@ Plecs {
                 Type          Ground
                 Name          "Ground"
                 Show          off
-                Position      [280, 265]
+                Position      [360, 265]
                 Direction     up
                 Flipped       off
                 LabelPosition east
@@ -78347,7 +78421,7 @@ Plecs {
                 Type          TransferFunction
                 Name          "Transfer Fcn"
                 Show          off
-                Position      [165, 140]
+                Position      [245, 140]
                 Direction     right
                 Flipped       on
                 LabelPosition south
@@ -78368,17 +78442,36 @@ Plecs {
                   Show          off
                 }
               }
+              Component {
+                Type          Saturation
+                Name          "Saturation"
+                Show          off
+                Position      [140, 140]
+                Direction     right
+                Flipped       on
+                LabelPosition south
+                Parameter {
+                  Variable      "UpperLimit"
+                  Value         "Usat"
+                  Show          on
+                }
+                Parameter {
+                  Variable      "LowerLimit"
+                  Value         "-Usat"
+                  Show          on
+                }
+              }
               Connection {
                 Type          Wire
                 SrcComponent  "I1"
                 SrcTerminal   2
-                Points        [240, 120; 280, 120]
+                Points        [320, 120; 360, 120]
                 Branch {
                   DstComponent  "Port1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [320, 120]
+                  Points        [400, 120]
                   DstComponent  "R1"
                   DstTerminal   1
                 }
@@ -78405,18 +78498,18 @@ Plecs {
                 Type          Wire
                 SrcComponent  "Ground"
                 SrcTerminal   1
-                Points        [280, 240]
+                Points        [360, 240]
                 Branch {
                   DstComponent  "Vm1"
                   DstTerminal   2
                 }
                 Branch {
-                  Points        [240, 240]
+                  Points        [320, 240]
                   DstComponent  "I1"
                   DstTerminal   1
                 }
                 Branch {
-                  Points        [320, 240]
+                  Points        [400, 240]
                   DstComponent  "R1"
                   DstTerminal   2
                 }
@@ -78432,6 +78525,13 @@ Plecs {
                 Type          Signal
                 SrcComponent  "Transfer Fcn"
                 SrcTerminal   2
+                DstComponent  "Saturation"
+                DstTerminal   1
+              }
+              Connection {
+                Type          Signal
+                SrcComponent  "Saturation"
+                SrcTerminal   2
                 DstComponent  "out"
                 DstTerminal   1
               }
@@ -78439,7 +78539,7 @@ Plecs {
           }
           Parameter {
             Variable      "Configuration"
-            Value         "3"
+            Value         "1"
             Show          off
           }
         }
