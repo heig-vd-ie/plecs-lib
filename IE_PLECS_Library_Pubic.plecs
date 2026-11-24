@@ -34893,7 +34893,7 @@ Plecs {
             Direction     left
           }
           Schematic {
-            Location      [500, 176; 2048, 881]
+            Location      [2585, 120; 4133, 825]
             ZoomFactor    1
             SliderPosition [0, 0]
             ShowBrowser   off
@@ -35264,6 +35264,11 @@ Plecs {
               Direction     right
               Flipped       off
               LabelPosition south
+              Probe {
+                Component     "Sum"
+                Path          "Inverters/Inverter Power part"
+                Signals       {"Input 1"}
+              }
             }
             Component {
               Type          Gain
@@ -36614,6 +36619,11 @@ Plecs {
           }
           MaskProbe {
             Name          "Ui (V) Inverter voltage "
+            Probe {
+              Component     "Gain3"
+              Path          ""
+              Signals       {"Input"}
+            }
           }
           MaskProbe {
             Name          "ui (pu) Inverter voltage "
